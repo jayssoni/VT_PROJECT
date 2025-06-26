@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import Logo from "../assets/vcart logo.png"
 import google from "../assets/google.jpeg" // make sure this path is correct
@@ -7,6 +8,8 @@ import { IoEyeOffSharp } from "react-icons/io5";
 import {useContext} from 'react'
 import axios from 'axios'
 import { authDataContext } from '../context/AuthContext';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../utils/Firebase';
 function Registration() {
 
   const [show, setshow] = useState(false) 
@@ -15,6 +18,8 @@ function Registration() {
     let [email,setEmail] = useState("")
     let [password,setPassword] = useState("")
   let navigate = useNavigate()
+
+
 
   const handleSignup = async (e) => {
         e.preventDefault()
@@ -27,6 +32,23 @@ function Registration() {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const googleSignup = async () => {
+        try {
+            const response = await signInWithPopup(auth , provider)
+             
+          let user = response.user
+          let name = user.displayName
+          let email =user.email
+             
+            const result = await axios.post(serverUrl + "/api/auth/googlogin" ,{name , email} , {withCredentials:true})
+            console.log(result.data)
+
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
 
@@ -50,8 +72,8 @@ function Registration() {
         <form action="" onSubmit={handleSignup} className='w-[90%] h-[90%] flex flex-col items-center justify-start gap-[20px]'>
 
           {/* Google Registration */}
-          <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer'>
-            <img src={google} alt="" className='w-[20px] rounded-2xl' />
+          <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer'   onClick={googleSignup}>
+            <img src={google} alt="" className='w-[20px] rounded-2xl'/>
             Registration with Google
           </div>
 

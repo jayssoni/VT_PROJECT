@@ -42,7 +42,7 @@ function Login ()  {
 
       {/* Title */}
       <div className='w-[100%] h-[100px] flex items-center justify-center flex-col gap-[10px]'>
-        <span className='text-[25px] font-semibold'>Registration Page</span>
+        <span className='text-[25px] font-semibold'>Login Page</span>
         <span className='text-[16px]'>Welcome to OneCart, Place your order</span>
       </div>
 
@@ -54,7 +54,7 @@ function Login ()  {
           {/* Google Registration */}
           <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer'>
             <img src={google} alt="" className='w-[20px] rounded-2xl' />
-            Registration with Google
+            Login with Google
           </div>
 
           {/* OR Separator */}
@@ -92,7 +92,7 @@ function Login ()  {
                 Login
             </button>
 
-            <p className='flex gap-[10px]'>You haven't any account?<span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={() => navigate("/signup")}>Create New Account</span></p>
+            <p className='flex gap-[10px]'>You haven't any account?<span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={() => navigate("/registration")}>Create New Account</span></p>
 
 
           </div>
