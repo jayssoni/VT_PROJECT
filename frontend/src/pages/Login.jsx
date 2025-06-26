@@ -7,6 +7,8 @@ import { IoEyeOffSharp } from "react-icons/io5";
 import { useContext } from 'react';
 import axios from 'axios';
 import { authDataContext } from '../context/AuthContext';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../utils/Firebase';
 
 
 
@@ -31,6 +33,27 @@ function Login ()  {
       console.log(error)
     }
    }
+
+
+ const googleLogin = async () => {
+
+        try {
+            const response = await signInWithPopup(auth , provider)
+             
+          let user = response.user
+          let name = user.displayName
+          let email =user.email
+             
+            const result = await axios.post(serverUrl + "/api/auth/googlogin" ,{name , email} , {withCredentials:true})
+            console.log(result.data)
+
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
+
   return (
     <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-white flex flex-col items-center justify-start'>
       
@@ -52,7 +75,7 @@ function Login ()  {
 
 
           {/* Google Registration */}
-          <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer'>
+          <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer' onClick={googleLogin}>
             <img src={google} alt="" className='w-[20px] rounded-2xl' />
             Login with Google
           </div>

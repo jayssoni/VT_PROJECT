@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import Logo from "../assets/vcart logo.png"
 import google from "../assets/google.jpeg" // make sure this path is correct
