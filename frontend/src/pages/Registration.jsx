@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
 import {useContext} from 'react'
-import authDataContext from '../context/AuthContext'
 import axios from 'axios'
+import { authDataContext } from '../context/AuthContext';
 function Registration() {
 
   const [show, setshow] = useState(false) 
-     let {serverUrl} = useContext(authDataContext)
+    let {serverUrl} = useContext(authDataContext)
     let [name,setName] = useState("")
     let [email,setEmail] = useState("")
     let [password,setPassword] = useState("")
