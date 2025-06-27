@@ -17,6 +17,7 @@ function Login ()  {
       let [email,setEmail] = useState("")
     let [password,setPassword] = useState("")
         let {serverUrl} = useContext(authDataContext)
+        let {getCurrentUser} = useContext(authDataContext)
 
   let navigate = useNavigate()
 
@@ -26,7 +27,8 @@ function Login ()  {
           let result = await axios.post(serverUrl+ '/api/auth/login',
           {email,password},{withCredentials:true})
           console.log(result.data)
-          
+          getCurrentUser()
+          navigate("/")
 
     }
     catch(error){

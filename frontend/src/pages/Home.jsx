@@ -2,11 +2,12 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div >
-        <h1 className='text-3xl font-bold underline text-center mt-10 bg-fuchsia-200'>Welcome to the Home Page</h1>
-        <p className='text-center mt-5'>This is the home page of our application. You can navigate to other pages using the links provided.</p>
+       <div className=' w-[100vw] lg:h-[100vh] md:h-[50vh] sm:h-[30vh]   bg-gradient-to-l from-[#141414] to-[#0c2025] '>
+
+     
     </div>
   )
 }
 
 export default Home
+
