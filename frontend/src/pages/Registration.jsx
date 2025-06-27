@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Logo from "../assets/vcart logo.png"
-import google from "../assets/google.jpeg" // make sure this path is correct
+import google from "../assets/google.png" // make sure this path is correct
 import { useNavigate } from 'react-router-dom'
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";

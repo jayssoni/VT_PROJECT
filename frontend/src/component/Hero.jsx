@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaCircle } from "react-icons/fa";
-
+    
 function Hero({heroData,heroCount,setHeroCount}) {
   return (
     <div className='w-[40%] h-[100%]  relative' >
