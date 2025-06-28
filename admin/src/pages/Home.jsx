@@ -6,8 +6,8 @@ const Home = () => {
    return (
    
     <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white] relative'>
-      <Nav />
-       <Sidebar />
+      <Nav/>
+       <Sidebar/>
 
        <div className='w-[70vw] h-[100vh] absolute left-[25%] flex items-Start justify-start flex-col  gap-[40px] py-[100px]'>
          <h1 className='text-[35px] text-[#afe2f2]'>OneCart Admin Panel</h1>
