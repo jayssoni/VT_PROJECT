@@ -20,8 +20,7 @@ function Login ()  {
         let {serverUrl} = useContext(authDataContext)
         let {getCurrentUser} = useContext(userDataContext)
 
-  let navigate = useNavigate()
-
+let navigate = useNavigate()
    const handlelogin =async (e)=>{  
      e.preventDefault()
     try{
@@ -29,7 +28,7 @@ function Login ()  {
         { email, password }, { withCredentials: true });
       console.log("Login Success:", result.data);
 
-          getCurrentUser()
+        await  getCurrentUser()
           navigate("/")
 
     }
