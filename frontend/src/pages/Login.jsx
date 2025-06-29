@@ -9,6 +9,7 @@ import axios from 'axios';
 import { authDataContext } from '../context/AuthContext';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../utils/Firebase';
+import { userDataContext } from '../context/UserContext';
 
 
 
@@ -17,7 +18,7 @@ function Login ()  {
       let [email,setEmail] = useState("")
     let [password,setPassword] = useState("")
         let {serverUrl} = useContext(authDataContext)
-        let {getCurrentUser} = useContext(authDataContext)
+        let {getCurrentUser} = useContext(userDataContext)
 
   let navigate = useNavigate()
 
