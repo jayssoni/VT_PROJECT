@@ -25,9 +25,10 @@ function Login ()  {
    const handlelogin =async (e)=>{  
      e.preventDefault()
     try{
-          let result = await axios.post(serverUrl+ '/api/auth/login',
-          {email,password},{withCredentials:true})
-          console.log(result.data)
+           const result = await axios.post(`${serverUrl}/api/auth/login`,
+        { email, password }, { withCredentials: true });
+      console.log("Login Success:", result.data);
+
           getCurrentUser()
           navigate("/")
 
