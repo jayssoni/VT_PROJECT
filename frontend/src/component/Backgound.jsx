@@ -1,24 +1,24 @@
 import React from 'react'
-import back1 from "../assets/back1.jpg"
-import back2 from "../assets/back2.jpg"
-import back3 from "../assets/back3.jpg"
-import back4 from "../assets/back4.jpg"
 
 function Backgound({heroCount}) {
+  const backgrounds = [
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80", // Fashion store
+    "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80", // Shopping mall
+    "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80", // Clothing store
+    "https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2013&q=80"  // Retail store
+  ]
   
-    if(heroCount === 0){
-        return  <img src={back2} alt="" className='w-[100%] h-[100%]  float-left overflow-auto  object-cover'/>
-    }else if(heroCount === 1){
-       return  <img src={back1} alt="" className='w-[100%] h-[100%] float-left overflow-auto  object-cover'/>
-
-    }else if(heroCount === 2){
-       return  <img src={back3} alt="" className='w-[100%]  h-[100%] float-left overflow-auto  object-cover'/>
-
-    }else if(heroCount === 3){
-       return  <img src={back4} alt="" className='w-[100%] h-[100%] float-left overflow-auto  object-cover'/>
-
-    }
-  
+  return (
+    <div className='absolute inset-0 overflow-hidden rounded-3xl'>
+      <img 
+        src={backgrounds[heroCount]} 
+        alt="" 
+        className='w-[100%] h-[100%] object-cover transition-all duration-1000 ease-in-out transform scale-105 hover:scale-110 filter brightness-75'
+      />
+      <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/30 rounded-3xl'></div>
+      <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl'></div>
+    </div>
+  )
 }
 
 export default Backgound

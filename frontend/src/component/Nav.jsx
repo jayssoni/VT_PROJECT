@@ -1,84 +1,153 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react'
 import logo from '../assets/logo.png'
-import { IoSearchCircleOutline } from "react-icons/io5";
-import { FaCircleUser } from "react-icons/fa6";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { userDataContext } from '../context/UserContext';
-import { IoSearchCircleSharp } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
-import { IoMdHome } from "react-icons/io";
-import { HiOutlineCollection } from "react-icons/hi";
-import { MdContacts } from "react-icons/md";
-import axios from 'axios';
-import { authDataContext } from '../context/authContext';
-import { shopDataContext } from '../context/ShopContext';
+import { IoSearchCircleOutline, IoSearchCircleSharp } from "react-icons/io5"
+import { FaCircleUser } from "react-icons/fa6"
+import { MdOutlineShoppingCart } from "react-icons/md"
+import { userDataContext } from '../context/UserContext'
+import { authDataContext } from '../context/authContext'
+import { shopDataContext } from '../context/ShopContext'
+import { useNavigate } from 'react-router-dom'
+import { IoMdHome } from "react-icons/io"
+import { HiOutlineCollection } from "react-icons/hi"
+import { MdContacts } from "react-icons/md"
+import axios from 'axios'
+
 function Nav() {
-    let {getCurrentUser , userData} = useContext(userDataContext)
-    let {serverUrl} = useContext(authDataContext)
-    let {showSearch,setShowSearch,search,setSearch,getCartCount} = useContext(shopDataContext)
-    let [showProfile,setShowProfile] = useState(false)
-    let navigate = useNavigate()
+  const { getCurrentUser, userData } = useContext(userDataContext)
+  const { serverUrl } = useContext(authDataContext)
+  const { showSearch, setShowSearch, search, setSearch, getCartCount } = useContext(shopDataContext)
+  const [showProfile, setShowProfile] = useState(false)
+  const navigate = useNavigate()
 
-
-    const handleLogout = async () => {
-        try {
-            const result = await axios.get(serverUrl + "/api/auth/logout" , {withCredentials:true})
-            console.log(result.data)
-           
-            navigate("/login")
-        } catch (error) {
-            console.log(error)
-        }
-        
+  const handleLogout = async () => {
+    try {
+      const result = await axios.get(serverUrl + "/api/auth/logout", { withCredentials: true })
+      console.log(result.data)
+      navigate("/login")
+    } catch (error) {
+      console.log(error)
     }
+  }
+
   return (
-    <div className='w-[100vw] h-[70px] bg-[#ecfafaec] z-10 fixed top-0 flex  items-center justify-between px-[30px] shadow-md shadow-black '>
-
-        <div className='w-[20%] lg:w-[30%] flex items-center justify-start   gap-[10px] '>
-            <img src={logo} alt="" className='w-[30px]' />
-            <h1 className='text-[25px] text-[black] font-sans '>OneCart</h1>
-        </div>
-        <div className='w-[50%] lg:w-[40%] hidden md:flex'>
-            <ul className='flex items-center justify-center gap-[19px] text-[white] '>
-                <li className='text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl' onClick={()=>navigate("/")}>HOME</li>
-                <li className='text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl' onClick={()=>navigate("/collection")}>COLLECTIONS</li>
-                <li className='text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl' onClick={()=>navigate("/about")}>ABOUT</li>
-                <li className='text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl' onClick={()=>navigate("/contact")}>CONTACT</li>
-            </ul>
-        </div>
-        <div className='w-[30%] flex items-center justify-end gap-[20px]'>
-         {!showSearch && <IoSearchCircleOutline  className='w-[38px] h-[38px] text-[#000000]  cursor-pointer' onClick={()=>{setShowSearch(prev=>!prev);navigate("/collection")}}/>}
-           {showSearch && <IoSearchCircleSharp  className='w-[38px] h-[38px] text-[#000000]  cursor-pointer' onClick={()=>setShowSearch(prev=>!prev)}/>}
-         {!userData && <FaCircleUser className='w-[29px] h-[29px] text-[#000000]  cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}/>}
-         {userData && <div className='w-[30px] h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}>{userData?.name.slice(0,1)}</div>}
-         <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block' onClick={()=>navigate("/cart")}/>
-         <p className='absolute w-[18px] h-[18px] items-center  justify-center bg-black px-[5px] py-[2px] text-white  rounded-full text-[9px] top-[10px] right-[23px] hidden md:block'>{getCartCount()}</p>
-        </div>
-       {showSearch && <div className='w-[100%]  h-[80px] bg-[#d8f6f9dd] absolute top-[100%] left-0 right-0 flex items-center justify-center '>
-            <input type="text" className='lg:w-[50%] w-[80%] h-[60%] bg-[#233533] rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]' placeholder='Search Here' onChange={(e)=>{setSearch(e.target.value)}} value={search} />
-        </div>}
-
-       {showProfile && <div className='absolute w-[220px] h-[150px] bg-[#000000d7] top-[110%] right-[4%] border-[1px] border-[#aaa9a9] rounded-[10px] z-10'>
-        <ul className='w-[100%] h-[100%] flex items-start justify-around flex-col text-[17px] py-[10px] text-[white]'>
-            {!userData && <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer' onClick={()=>{
-                navigate("/login");setShowProfile(false)
-            }}>Login</li>}
-            {userData && <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer' onClick={()=>{handleLogout();setShowProfile(false)}}>LogOut</li>}
-            <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer'onClick={()=>{navigate("/order");setShowProfile(false)}} >Orders</li>
-            <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer'onClick={()=>{navigate("/about");setShowProfile(false)}} >About</li>
+    <div className='w-[100vw] h-[70px] bg-[#ffffff0d] backdrop-blur-lg fixed top-0 flex items-center justify-between px-4 md:px-8 z-50 shadow-lg border-b border-[#ffffff1a] rounded-b-2xl'>
+      <div className='w-[30%] md:w-[20%] flex items-center justify-start gap-2'>
+        <img src={logo} alt="OneCart Logo" className='w-8 h-8 rounded-full border border-[#ffffff1a] shadow-sm' />
+        <h1 className='text-2xl font-sans text-white'>OneCart</h1>
+      </div>
+      <div className='hidden md:flex w-[40%]'>
+        <ul className='flex items-center justify-center gap-4'>
+          {['HOME', 'COLLECTIONS', 'ABOUT', 'CONTACT'].map((item, index) => (
+            <li
+              key={index}
+              className='text-sm font-medium text-white bg-[#0000004d] hover:bg-[#ffffff1a] py-2 px-4 rounded-full cursor-pointer border border-[#ffffff1a] shadow-sm transition-all'
+              onClick={() => navigate(`/${item.toLowerCase()}`)}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
-
-        </div>}
-        <div className='w-[100vw] h-[90px] flex items-center justify-between px-[20px] text-[12px]
-         fixed bottom-0 left-0 bg-[#191818]   md:hidden'>
-            <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/")}><IoMdHome className='w-[28px] h-[28px] text-[white] md:hidden'/> Home</button>
-             <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("collection")}><HiOutlineCollection className='w-[28px] h-[28px] text-[white] md:hidden'/> Collections</button>
-              <button className='text-[white] flex items-center justify-center flex-col gap-[2px] ' onClick={()=>navigate("/contact")}><MdContacts className='w-[28px] h-[28px] text-[white] md:hidden'/>Contact</button>
-               <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/cart")}><MdOutlineShoppingCart className='w-[28px] h-[28px] text-[white] md:hidden'/> Cart</button>
-               <p className='absolute w-[18px] h-[18px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold  rounded-full text-[9px] top-[8px] right-[18px]'>{getCartCount()}</p>
-
+      </div>
+      <div className='w-[30%] flex items-center justify-end gap-4'>
+        {!showSearch ? (
+          <IoSearchCircleOutline
+            className='w-9 h-9 text-white cursor-pointer hover:text-[#88d9ee] transition-colors'
+            onClick={() => { setShowSearch(prev => !prev); navigate("/collection") }}
+          />
+        ) : (
+          <IoSearchCircleSharp
+            className='w-9 h-9 text-white cursor-pointer hover:text-[#88d9ee] transition-colors'
+            onClick={() => setShowSearch(prev => !prev)}
+          />
+        )}
+        {!userData ? (
+          <FaCircleUser
+            className='w-8 h-8 text-white cursor-pointer hover:text-[#88d9ee] transition-colors'
+            onClick={() => setShowProfile(prev => !prev)}
+          />
+        ) : (
+          <div
+            className='w-8 h-8 bg-[#0000004d] text-white rounded-full flex items-center justify-center cursor-pointer border border-[#ffffff1a] shadow-sm hover:bg-[#ffffff1a]'
+            onClick={() => setShowProfile(prev => !prev)}
+          >
+            {userData?.name.slice(0, 1)}
+          </div>
+        )}
+        <div className='relative hidden md:block'>
+          <MdOutlineShoppingCart
+            className='w-8 h-8 text-white cursor-pointer hover:text-[#88d9ee] transition-colors'
+            onClick={() => navigate("/cart")}
+          />
+          <p className='absolute w-5 h-5 flex items-center justify-center bg-[#0000004d] text-white rounded-full text-xs top-0 right-0 border border-[#ffffff1a] shadow-sm'>
+            {getCartCount()}
+          </p>
         </div>
-    
+      </div>
+      {showSearch && (
+        <div className='w-full h-20 bg-[#ffffff0d] backdrop-blur-lg absolute top-full left-0 flex items-center justify-center border-t border-[#ffffff1a] shadow-lg'>
+          <input
+            type="text"
+            className='w-[80%] md:w-[50%] h-12 bg-[#0000004d] rounded-full px-6 text-white placeholder:text-white/70 text-lg border border-[#ffffff1a] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#88d9ee]'
+            placeholder='Search Here'
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </div>
+      )}
+      {showProfile && (
+        <div className='absolute w-56 h-40 bg-[#0000004d] backdrop-blur-lg top-[110%] right-4 border border-[#ffffff1a] rounded-xl shadow-lg z-50'>
+          <ul className='w-full h-full flex flex-col items-start justify-around text-white text-base py-2'>
+            {!userData ? (
+              <li
+                className='w-full hover:bg-[#ffffff1a] px-4 py-2 cursor-pointer rounded-lg transition-colors'
+                onClick={() => { navigate("/login"); setShowProfile(false) }}
+              >
+                Login
+              </li>
+            ) : (
+              <li
+                className='w-full hover:bg-[#ffffff1a] px-4 py-2 cursor-pointer rounded-lg transition-colors'
+                onClick={() => { handleLogout(); setShowProfile(false) }}
+              >
+                LogOut
+              </li>
+            )}
+            <li
+              className='w-full hover:bg-[#ffffff1a] px-4 py-2 cursor-pointer rounded-lg transition-colors'
+              onClick={() => { navigate("/order"); setShowProfile(false) }}
+            >
+              Orders
+            </li>
+            <li
+              className='w-full hover:bg-[#ffffff1a] px-4 py-2 cursor-pointer rounded-lg transition-colors'
+              onClick={() => { navigate("/about"); setShowProfile(false) }}
+            >
+              About
+            </li>
+          </ul>
+        </div>
+      )}
+      <div className='w-[100vw] h-16 flex items-center justify-between px-4 text-xs fixed bottom-0 left-0 bg-[#0000004d] backdrop-blur-lg md:hidden border-t border-[#ffffff1a] shadow-lg'>
+        {[
+          { icon: <IoMdHome className='w-7 h-7 text-white' />, label: 'Home', path: '/' },
+          { icon: <HiOutlineCollection className='w-7 h-7 text-white' />, label: 'Collections', path: '/collection' },
+          { icon: <MdContacts className='w-7 h-7 text-white' />, label: 'Contact', path: '/contact' },
+          { icon: <MdOutlineShoppingCart className='w-7 h-7 text-white' />, label: 'Cart', path: '/cart' },
+        ].map((item, index) => (
+          <button
+            key={index}
+            className='text-white flex items-center justify-center flex-col gap-1'
+            onClick={() => navigate(item.path)}
+          >
+            {item.icon}
+            {item.label}
+          </button>
+        ))}
+        <p className='absolute w-5 h-5 flex items-center justify-center bg-[#0000004d] text-white rounded-full text-xs top-2 right-4 border border-[#ffffff1a] shadow-sm'>
+          {getCartCount()}
+        </p>
+      </div>
     </div>
   )
 }
