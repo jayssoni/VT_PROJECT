@@ -1,106 +1,75 @@
 import React, { useContext } from 'react'
 import { shopDataContext } from '../context/ShopContext'
-import Title from './Title'
 
 function CartTotal() {
-    const {currency , delivery_fee , getCartAmount} = useContext(shopDataContext)
+    const {currency, delivery_fee, getCartAmount} = useContext(shopDataContext)
     const subtotal = getCartAmount()
     const total = subtotal === 0 ? 0 : subtotal + delivery_fee
+    const discount = subtotal > 500 ? Math.floor(subtotal * 0.1) : 0
     
     return (
-        <div className='w-full lg:ml-8 max-w-md'>
+        <div className='w-full bg-white rounded shadow-sm border border-gray-200 p-4'>
             {/* Header */}
-            <div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 shadow-lg border border-gray-200/50 backdrop-blur-sm mb-6'>
-                <Title text1={'CART'} text2={'TOTALS'}/>
-                <p className='text-gray-600 text-sm mt-2'>Review your order summary</p>
+            <div className='pb-4 border-b border-gray-200'>
+                <h3 className='text-lg font-medium text-gray-800'>PRICE DETAILS</h3>
             </div>
 
-            {/* Cart Summary Card */}
-            <div className='bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-200/50 overflow-hidden'>
-                {/* Header with gradient */}
-                <div className='bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white'>
-                    <h3 className='text-xl font-bold'>Order Summary</h3>
-                    <p className='text-blue-100 text-sm'>Final pricing breakdown</p>
+            {/* Price Breakdown */}
+            <div className='py-4 space-y-3 border-b border-gray-200'>
+                {/* Price Row */}
+                <div className='flex justify-between'>
+                    <span className='text-gray-600'>Price ({subtotal === 0 ? 0 : 1} item)</span>
+                    <span className='text-gray-800'>{currency}{subtotal.toFixed(2)}</span>
                 </div>
 
-                {/* Content */}
-                <div className='p-6 space-y-4'>
-                    {/* Subtotal */}
-                    <div className='flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-200/50'>
-                        <div className='flex items-center gap-2'>
-                            <div className='w-2 h-2 bg-blue-500 rounded-full'></div>
-                            <span className='text-gray-700 font-medium'>Subtotal</span>
-                        </div>
-                        <span className='text-gray-900 font-semibold text-lg'>
-                            {currency} {subtotal}.00
-                        </span>
+                {/* Discount Row */}
+                {discount > 0 && (
+                    <div className='flex justify-between'>
+                        <span className='text-gray-600'>Discount</span>
+                        <span className='text-green-600'>-{currency}{discount.toFixed(2)}</span>
                     </div>
+                )}
 
-                    {/* Divider */}
-                    <div className='flex items-center gap-4'>
-                        <div className='flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent'></div>
-                        <span className='text-gray-400 text-xs'>+</span>
-                        <div className='flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent'></div>
-                    </div>
-
-                    {/* Shipping Fee */}
-                    <div className='flex justify-between items-center p-4 bg-blue-50 rounded-2xl border border-blue-200/50'>
-                        <div className='flex items-center gap-2'>
-                            <div className='w-2 h-2 bg-green-500 rounded-full'></div>
-                            <span className='text-gray-700 font-medium'>Shipping Fee</span>
-                        </div>
-                        <span className='text-gray-900 font-semibold text-lg'>
-                            {currency} {delivery_fee}
-                        </span>
-                    </div>
-
-                    {/* Divider */}
-                    <div className='flex items-center gap-4'>
-                        <div className='flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent'></div>
-                        <span className='text-gray-400 text-xs'>=</span>
-                        <div className='flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent'></div>
-                    </div>
-
-                    {/* Total */}
-                    <div className='p-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white shadow-lg'>
-                        <div className='flex justify-between items-center'>
-                            <div className='flex items-center gap-2'>
-                                <div className='w-3 h-3 bg-yellow-400 rounded-full animate-pulse'></div>
-                                <span className='text-white font-bold text-lg'>Total Amount</span>
-                            </div>
-                            <span className='text-white font-bold text-2xl'>
-                                {currency} {total}
-                            </span>
-                        </div>
-                        <p className='text-blue-100 text-sm mt-2'>
-                            {subtotal === 0 ? 'Add items to continue' : 'Inclusive of all taxes'}
-                        </p>
-                    </div>
-
-                    {/* Additional Info */}
-                    <div className='bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-2xl border border-green-200/50'>
-                        <div className='flex items-center gap-2 mb-2'>
-                            <div className='w-2 h-2 bg-green-500 rounded-full'></div>
-                            <span className='text-green-700 font-semibold text-sm'>Free Benefits</span>
-                        </div>
-                        <ul className='text-green-600 text-sm space-y-1'>
-                            <li>• 7-day return policy</li>
-                            <li>• Quality guarantee</li>
-                            <li>• 24/7 customer support</li>
-                        </ul>
-                    </div>
-
-                    {/* Savings Badge */}
-                    {subtotal > 500 && (
-                        <div className='bg-gradient-to-r from-orange-500 to-red-500 text-white p-4 rounded-2xl text-center shadow-lg'>
-                            <div className='flex items-center justify-center gap-2 mb-1'>
-                                <span className='text-lg'>🎉</span>
-                                <span className='font-bold'>Congratulations!</span>
-                            </div>
-                            <p className='text-sm'>You saved {currency} {Math.floor(subtotal * 0.1)} on this order!</p>
-                        </div>
-                    )}
+                {/* Delivery Row */}
+                <div className='flex justify-between'>
+                    <span className='text-gray-600'>Delivery Charges</span>
+                    <span className={subtotal === 0 ? 'text-gray-800' : 'text-green-600'}>
+                        {subtotal === 0 ? currency + '0.00' : 'FREE'}
+                    </span>
                 </div>
+            </div>
+
+            {/* Total Amount */}
+            <div className='py-4 flex justify-between'>
+                <span className='text-lg font-medium text-gray-800'>Total Amount</span>
+                <span className='text-lg font-medium text-gray-800'>
+                    {currency}{(total - discount).toFixed(2)}
+                </span>
+            </div>
+
+            {/* Savings Banner */}
+            {discount > 0 && (
+                <div className='py-2 text-green-600 font-medium text-sm'>
+                    You will save {currency}{discount.toFixed(2)} on this order
+                </div>
+            )}
+
+            {/* Checkout Button */}
+            <button 
+                className={`w-full py-3 rounded text-white font-medium mt-2 ${
+                    subtotal === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                }`}
+                disabled={subtotal === 0}
+            >
+                {subtotal === 0 ? 'ADD ITEMS TO CONTINUE' : 'PLACE ORDER'}
+            </button>
+
+            {/* Secure Payment Info */}
+            <div className='flex items-center justify-center gap-1 mt-4 pt-4 border-t border-gray-200'>
+                <svg className='w-5 h-5 text-gray-500' fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span className='text-xs text-gray-500'>Safe and Secure Payments</span>
             </div>
         </div>
     )

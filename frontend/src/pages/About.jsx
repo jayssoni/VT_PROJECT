@@ -5,50 +5,71 @@ import NewLetterBox from '../component/NewLetterBox'
 
 function About() {
   return (
-    <div className=' w-[99vw] min-h-[100vh] flex items-center justify-center flex-col  bg-gradient-to-l from-[#141414] to-[#0c2025] gap-[50px] pt-[80px]'>
-      <Title text1={'ABOUT'} text2={'US'}/>
-      <div className='w-[100%]  flex items-center justify-center flex-col lg:flex-row'>
+    <div className='w-full min-h-screen bg-gradient-to-br from-[#F0F4F8] via-[#FAFAFA] to-[#F9FAFB] text-[#1F2937] pt-[80px]'>
+      {/* Section Title */}
+      <Title text1="ABOUT" text2="US" />
 
-        <div className='lg:w-[50%] w-[100%] flex items-center justify-center '>
-          <img src={about} alt="" className='lg:w-[65%] w-[80%] shadow-md shadow-black rounded-sm' />
+      {/* Main Content */}
+      <div className='max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center px-4 gap-10 mt-8'>
+
+        {/* Image */}
+        <div className='lg:w-1/2 w-full flex justify-center'>
+          <img
+            src={about}
+            alt="about"
+            className='w-[80%] lg:w-[70%] rounded-2xl shadow-xl border border-gray-200'
+          />
         </div>
-        <div className='lg:w-[50%] w-[80%] flex items-start justify-center gap-[20px]  flex-col mt-[20px] lg:mt-[0px]'>
-          <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>
-            OneCart born for smart, seamless shopping—created to deliver quality products, trending styles, and everyday essentials in one place. With reliable service, fast delivery, and great value, OneCart makes your online shopping experience simple, satisfying, and stress-free.
+
+        {/* About Text */}
+        <div className='lg:w-1/2 w-full mt-6 lg:mt-0 flex flex-col gap-4'>
+          <p className='text-sm md:text-base lg:w-[90%] text-gray-700'>
+            OneCart is born for smart, seamless shopping — created to deliver quality products, trending styles, and everyday essentials in one place. With reliable service, fast delivery, and great value, OneCart makes your online shopping experience simple, satisfying, and stress-free.
           </p>
-          <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>
-             modern shoppers—combining style, convenience, and affordability. Whether it’s fashion, essentials, or trends, we bring everything you need to one trusted platform with fast delivery, easy returns, and a customer-first shopping experience you’ll love.
+          <p className='text-sm md:text-base lg:w-[90%] text-gray-700'>
+            We blend style, convenience, and affordability. Whether it’s fashion, essentials, or trends — everything you need is on one trusted platform with quick delivery and easy returns.
           </p>
-          <p className='lg:w-[80%] w-[100%] text-[15px] text-[white] lg:text-[18px] mt-[10px] font-bold'>Our Mission</p>
-          <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>
-            Our mission is to redefine online shopping by delivering quality, affordability, and convenience. OneCart connects customers with trusted products and brands, offering a seamless, customer-focused experience that saves time, adds value, and fits every lifestyle and need.
+          <h2 className='text-lg font-semibold text-[#2563EB]'>Our Mission</h2>
+          <p className='text-sm md:text-base lg:w-[90%] text-gray-700'>
+            Our mission is to redefine online shopping by offering quality, affordability, and convenience. OneCart connects customers with trusted products and brands — making your journey smooth and valuable.
           </p>
         </div>
       </div>
-      <div className='w-[100%] flex items-center justify-center flex-col gap-[10px]'>
-        <Title text1={'WHY'} text2={'CHOOSE US'}/>
-        <div className='w-[80%] flex items-center justify-center lg:flex-row flex-col py-[40px]'>
 
-          <div className='lg:w-[33%] w-[90%] h-[250px] border-[1px] border-gray-100 flex items-center justify-center gap-[20px] flex-col  px-[40px] py-[10px] text-[white] backdrop-blur-[2px] bg-[#ffffff0b]'>
-            <b className='text-[20px] font-semibold text-[#bff1f9]'>Quality Assurance</b>
-            <p>We guarantee quality through strict checks, reliable sourcing, and a commitment to customer satisfaction always.</p>
-          </div>
-           <div className='lg:w-[33%] w-[90%] h-[250px] border-[1px] border-gray-100 flex items-center justify-center gap-[20px] flex-col  px-[40px] py-[10px] text-[white] backdrop-blur-[2px] bg-[#ffffff0b]'>
-            <b className='text-[20px] font-semibold text-[#bff1f9]'>Convenience</b>
-            <p>
-             Shop easily with fast delivery, simple navigation, secure checkout, and everything you need in one place.
+      {/* Why Choose Us Section */}
+      <div className='w-full mt-20'>
+        <Title text1="WHY" text2="CHOOSE US" />
+        <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-10'>
+
+          {/* Box 1 */}
+          <div className='bg-white shadow-md rounded-2xl p-6 text-center hover:scale-[1.02] transition-transform border border-[#E5E7EB]'>
+            <h3 className='text-[#2563EB] font-semibold text-lg mb-2'>Quality Assurance</h3>
+            <p className='text-sm text-gray-600'>
+              We guarantee quality through strict checks, reliable sourcing, and a commitment to your satisfaction always.
             </p>
           </div>
-           <div className='lg:w-[33%] w-[90%] h-[250px] border-[1px] border-gray-100 flex items-center justify-center gap-[20px] flex-col  px-[40px] py-[10px] text-[white] backdrop-blur-[2px] bg-[#ffffff0b]'>
-            <b className='text-[20px] font-semibold text-[#bff1f9]'>Exceptional Customer Service</b>
-            <p>
-              Our dedicated support team ensures quick responses, helpful solutions, and a smooth shopping experience every time.
+
+          {/* Box 2 */}
+          <div className='bg-white shadow-md rounded-2xl p-6 text-center hover:scale-[1.02] transition-transform border border-[#E5E7EB]'>
+            <h3 className='text-[#2563EB] font-semibold text-lg mb-2'>Convenience</h3>
+            <p className='text-sm text-gray-600'>
+              Shop easily with fast delivery, smooth navigation, secure checkout, and all your needs at one place.
             </p>
           </div>
+
+          {/* Box 3 */}
+          <div className='bg-white shadow-md rounded-2xl p-6 text-center hover:scale-[1.02] transition-transform border border-[#E5E7EB]'>
+            <h3 className='text-[#2563EB] font-semibold text-lg mb-2'>Exceptional Service</h3>
+            <p className='text-sm text-gray-600'>
+              Our dedicated team ensures fast replies, helpful support, and an experience that feels personal and professional.
+            </p>
+          </div>
+
         </div>
       </div>
-      <NewLetterBox/>
-      
+
+      {/* Newsletter */}
+      <NewLetterBox />
     </div>
   )
 }

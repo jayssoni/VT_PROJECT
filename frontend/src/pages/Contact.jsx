@@ -1,33 +1,59 @@
 import React from 'react'
 import Title from '../component/Title'
-import contact from "../assets/contact.jpg"
+import contact from '../assets/contact.jpg'
 import NewLetterBox from '../component/NewLetterBox'
 
 function Contact() {
   return (
-    <div className='w-[99vw] min-h-[100vh] flex items-center justify-center flex-col  bg-gradient-to-l from-[#141414] to-[#0c2025] gap-[50px] pt-[80px]'>
-      <Title  text1={'CONTACT'} text2={'US'}/>
-      <div className='w-[100%]  flex items-center justify-center flex-col lg:flex-row'>
-        <div className='lg:w-[50%] w-[100%] flex items-center justify-center '>
-          <img src={contact} alt=""  className='lg:w-[70%] w-[80%] shadow-md shadow-black rounded-sm'/>
+    <div className='w-full min-h-screen bg-[#F9FAFB] pt-20 flex flex-col items-center gap-14 px-4 md:px-10'>
+      <Title text1={'CONTACT'} text2={'US'} />
+
+      <div className='w-full max-w-6xl flex flex-col lg:flex-row items-center justify-between gap-12'>
+
+        {/* Left: Image */}
+        <div className='w-full lg:w-1/2 flex justify-center'>
+          <img
+            src={contact}
+            alt="Contact"
+            className='w-[85%] rounded-xl shadow-lg'
+          />
         </div>
-        <div className='lg:w-[50%] w-[80%] flex items-start justify-center gap-[20px]  flex-col mt-[20px] lg:mt-[0px]'>
-        <p className='lg:w-[80%] w-[100%] text-[white] font-bold lg:text-[18px] text-[15px]'>Our Store</p>
-        <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>
-          <p>12345 Random Statiom</p>
-          <p>random city , state , India</p>
-        </p>
-        <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>
-          <p>tel: +91-9876543210</p>
-          <p>Email: admin@onecart.com</p>
-        </p>
-        <p className='lg:w-[80%] w-[100%] text-[15px] text-[white] lg:text-[18px] mt-[10px] font-bold'>Careers at OneCart</p>
-        <p className='lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]'>Learn more about our teams and job openings</p>
-        <button className='px-[30px] py-[20px] flex items-center justify-center text-[white] bg-transparent border active:bg-slate-600 rounded-md' >Explore Jobs</button>
+
+        {/* Right: Contact Info */}
+        <div className='w-full lg:w-1/2 flex flex-col gap-6 bg-white rounded-xl p-6 md:p-10 shadow-md text-[#1F2937]'>
+
+          {/* Store Location */}
+          <div>
+            <h3 className='text-xl font-semibold text-[#0EA5E9] mb-1'>Our Store</h3>
+            <p className='text-sm text-[#374151] leading-6'>
+              12345 Random Station<br />
+              Random City, State, India
+            </p>
+          </div>
+
+          {/* Contact Details */}
+          <div>
+            <h3 className='text-xl font-semibold text-[#0EA5E9] mb-1'>Contact</h3>
+            <p className='text-sm text-[#374151] leading-6'>
+              Tel: +91-9876543210<br />
+              Email: admin@onecart.com
+            </p>
+          </div>
+
+          {/* Career Section */}
+          <div>
+            <h3 className='text-xl font-semibold text-[#0EA5E9] mb-1'>Careers at OneCart</h3>
+            <p className='text-sm text-[#374151] mb-4 leading-6'>
+              Learn more about our teams and job openings.
+            </p>
+            <button className='bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-sm px-6 py-2 rounded-lg shadow-md transition'>
+              Explore Jobs
+            </button>
+          </div>
         </div>
       </div>
-      <NewLetterBox/>
-      
+
+      <NewLetterBox />
     </div>
   )
 }

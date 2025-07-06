@@ -4,23 +4,52 @@ import BestSeller from '../component/BestSeller'
 
 function Product() {
   return (
-    <div className='w-[100vw] min-h-[100vh] bg-gradient-to-br from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] flex items-center justify-start flex-col py-[40px] relative'>
-      {/* Background pattern */}
-      <div className='absolute inset-0 opacity-5'>
-        <div className='absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(59,130,246,0.1),_transparent_50%)]'></div>
-        <div className='absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl'></div>
-        <div className='absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl'></div>
-      </div>
-
-      <div className='w-[100%] min-h-[70px] flex items-center justify-center gap-[10px] flex-col mb-12 relative z-10'>
-        <div className='bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-gray-200/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2'>
-          <LatestCollection/>
+    <div className='w-full min-h-screen bg-gray-50'>
+      {/* Flipkart-style header banner */}
+      <div className='bg-white shadow-sm'>
+        <div className='max-w-7xl mx-auto px-4 py-4'>
+          <h1 className='text-2xl font-medium text-gray-800'>Our Products</h1>
+          <p className='text-gray-600 text-sm mt-1'>Discover our latest collections and best sellers</p>
         </div>
       </div>
 
-      <div className='w-[100%] min-h-[70px] flex items-center justify-center gap-[10px] flex-col relative z-10'>
-        <div className='bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-gray-200/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2'>
-          <BestSeller/>
+      {/* Main content container */}
+      <div className='max-w-7xl mx-auto px-4 py-6'>
+        {/* Latest Collection Section */}
+        <div className='mb-10'>
+          <div className='bg-white rounded-lg shadow-md p-4 mb-4'>
+            <h2 className='text-xl font-semibold text-gray-800 border-b pb-2 mb-4'>Latest Collection</h2>
+            <LatestCollection />
+          </div>
+        </div>
+
+        {/* Best Sellers Section */}
+        <div className='mb-10'>
+          <div className='bg-white rounded-lg shadow-md p-4'>
+            <h2 className='text-xl font-semibold text-gray-800 border-b pb-2 mb-4'>Best Sellers</h2>
+            <BestSeller />
+          </div>
+        </div>
+
+        {/* Flipkart-style promotional banner */}
+        <div className='bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg p-4 text-white mb-10'>
+          <div className='flex flex-col md:flex-row items-center justify-between'>
+            <div className='mb-4 md:mb-0'>
+              <h3 className='text-xl font-bold mb-1'>Special Offers</h3>
+              <p className='text-blue-100'>Get extra 10% off on first purchase</p>
+            </div>
+            <button className='bg-white text-blue-600 px-6 py-2 rounded font-medium hover:bg-blue-50 transition-colors'>
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Flipkart-style footer note */}
+      <div className='bg-gray-100 border-t border-gray-200 py-6'>
+        <div className='max-w-7xl mx-auto px-4 text-center text-gray-600 text-sm'>
+          <p>© 2023 YourStore. All Rights Reserved.</p>
+          <p className='mt-2'>Prices and availability are subject to change</p>
         </div>
       </div>
     </div>
