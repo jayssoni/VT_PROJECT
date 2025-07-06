@@ -9,14 +9,14 @@ function Backgound({heroCount}) {
   ]
   
   return (
-    <div className='absolute inset-0 overflow-hidden rounded-3xl'>
+    <div className='absolute inset-0 w-full h-full overflow-hidden'>
       <img 
         src={backgrounds[heroCount]} 
-        alt="" 
-        className='w-[100%] h-[100%] object-cover transition-all duration-1000 ease-in-out transform scale-105 hover:scale-110 filter brightness-75'
+        alt="Background" 
+        className='w-full h-full object-cover transition-all duration-1000 ease-in-out filter brightness-75'
       />
-      <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/30 rounded-3xl'></div>
-      <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl'></div>
+      <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/30'></div>
+      <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent'></div>
     </div>
   )
 }

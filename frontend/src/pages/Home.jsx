@@ -24,9 +24,9 @@ function Home() {
   },[])
   
   return (
-    <div className='overflow-x-hidden relative'>
-      <div className='ml-20 overflow-x-hidden relative top-[70px]'>
-        <div className='w-[100vw] lg:h-[100vh] md:h-[50vh] sm:h-[30vh] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] relative'>
+    <div className='w-full overflow-x-hidden'>
+      <div className='w-full pt-[70px]'>
+        <div className='w-full h-[100vh] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] relative overflow-hidden'>
           <div className='absolute inset-0 bg-gradient-to-l from-[#141414] to-[#0c2025] opacity-80'></div>
           <Backgound heroCount={heroCount}/>
           <Hero
