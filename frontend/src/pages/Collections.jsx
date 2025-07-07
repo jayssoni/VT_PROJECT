@@ -263,6 +263,6 @@ function Collections() {
       </div>
     </div>
   )
-}
+} 
 
 export default Collections
